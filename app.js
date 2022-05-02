@@ -12,7 +12,7 @@ const onlineQuiz = [
   {
     quizName: "Section 2",
     quizModule: "Variables",
-    quizScore: 87,
+    quizScore: 91,
     studentId: 02,
     studentName: "Madison Anderson",
     submissionDate: "5/2/2022",
@@ -20,7 +20,7 @@ const onlineQuiz = [
   {
     quizName: "Section 3",
     quizModule: "Functions",
-    quizScore: 93,
+    quizScore: 67,
     studentId: 03,
     studentName: "Michael Anderson",
     submissionDate: "5/1/2022",
@@ -85,10 +85,12 @@ const findUnsubmitted = (date, namesList, submissions) => {
   return myNames;
 };
 
-const emptyArr = [];
-
-let findunsub = findUnsubmitted("5/1/2022", getOppositeOfDate, onlineQuiz);
-console.log(findunsub);
-
-// let namesList = filterByDate("5/1/2022", onlineQuiz);
-// console.log(namesList);
+// Function that takes an array of objects and loops through it to get
+// the quiz scores of each object then it returns the average of the scores
+const getAverageScore = (submissions) => {
+  let sum = 0;
+  for (let i = 0; i < submissions.length; i++) {
+    sum += submissions[i].quizScore;
+  }
+  return sum / submissions.length;
+};
