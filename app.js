@@ -92,5 +92,6 @@ const getAverageScore = (submissions) => {
   for (let i = 0; i < submissions.length; i++) {
     sum += submissions[i].quizScore;
   }
-  return sum / submissions.length;
+  const result = sum / submissions.length;
+  return result.toFixed(1);
 };
