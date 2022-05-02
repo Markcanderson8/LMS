@@ -7,7 +7,7 @@ const onlineQuiz = [
     quizScore: 83,
     studentId: 01,
     studentName: "Mark Anderson",
-    submissionDate: "5/1/2022",
+    submissionDate: "5/3/2022",
   },
   {
     quizName: "Section 2",
@@ -15,7 +15,7 @@ const onlineQuiz = [
     quizScore: 87,
     studentId: 02,
     studentName: "Madison Anderson",
-    submissionDate: "5/3/2022",
+    submissionDate: "5/2/2022",
   },
   {
     quizName: "Section 3",
@@ -39,6 +39,16 @@ const filterByDate = (date, submissions) => {
   return mySubmissions;
 };
 
+const getOppositeOfDate = (date, submissions) => {
+  const mySubmissions = [];
+  for (let i = 0; i < submissions.length; i++) {
+    if (submissions[i].submissionDate != date) {
+      mySubmissions.push(submissions[i]);
+    }
+  }
+  return mySubmissions;
+};
+
 // Function takes a student Id and array of objects and returns
 // an array with the object of a student that matches the id
 const filterByStudentId = (Id, submissions) => {
@@ -51,7 +61,7 @@ const filterByStudentId = (Id, submissions) => {
   return studentIds;
 };
 
-// Function takes and array of objects and returs the names
+// Function takes an array of objects and returs the names
 // of the objects
 const filterByStudentName = (submissions) => {
   let myNamesList = [];
@@ -61,11 +71,24 @@ const filterByStudentName = (submissions) => {
   return myNamesList;
 };
 
-//let myNamesList = filterByStudentName(onlineQuiz);
+// Function takes a date, a function that checks dates against names and
+// an array of objects and returns a list of names that haven't take a
+// quiz for the date given
+const findUnsubmitted = (date, namesList, submissions) => {
+  let myNames = [];
+  namesList = getOppositeOfDate(date, submissions);
+  for (let i = 0; i < namesList.length; i++) {
+    if (namesList[i] != submissions[i].studentName) {
+      myNames.push(namesList[i].studentName);
+    }
+  }
+  return myNames;
+};
 
-// const findUnsubmitted = (date, namesList, submissions) => {
-//   let myNames = namesList(submissions);
-//   for (let i = 0; i < namesList.length; i++) {}
-// };
+const emptyArr = [];
 
-// findUnsubmitted("5/2/2022", myNamesList, onlineQuiz);
+let findunsub = findUnsubmitted("5/1/2022", getOppositeOfDate, onlineQuiz);
+console.log(findunsub);
+
+// let namesList = filterByDate("5/1/2022", onlineQuiz);
+// console.log(namesList);
