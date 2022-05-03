@@ -1,5 +1,3 @@
-// Author Mark Anderson
-
 const onlineQuiz = [
   {
     quizName: "Fundamentals",
@@ -39,10 +37,13 @@ const filterByDate = (date, submissions) => {
   return mySubmissions;
 };
 
+// Function takes a date and array of objects as a
+// parameter and returns the the objects of the array that
+// don't match the date
 const getOppositeOfDate = (date, submissions) => {
   const mySubmissions = [];
   for (let i = 0; i < submissions.length; i++) {
-    if (submissions[i].submissionDate != date) {
+    if (!(submissions[i].submissionDate == date)) {
       mySubmissions.push(submissions[i]);
     }
   }
@@ -72,7 +73,7 @@ const filterByStudentName = (submissions) => {
 };
 
 // Function takes a date, a function that checks dates against names and
-// an array of objects and returns a list of names that haven't take a
+// an array of objects and returns a list of names that haven't taken a
 // quiz for the date given
 const findUnsubmitted = (date, namesList, submissions) => {
   let myNames = [];
@@ -95,3 +96,12 @@ const getAverageScore = (submissions) => {
   const result = sum / submissions.length;
   return result.toFixed(1);
 };
+
+let result = findUnsubmitted("5/1/2022", filterByDate, onlineQuiz);
+console.log(result);
+
+// let student = filterByDate("5/4/2022", onlineQuiz);
+// console.log(student);
+
+// let average = getAverageScore(onlineQuiz);
+// console.log(average);
