@@ -4,27 +4,113 @@ const onlineQuiz = [
     quizModule: "Calculus",
     quizScore: 83,
     studentId: 01,
-    studentName: "Mark Anderson",
+    studentName: "Mark",
+    submissionDate: "5/4/2022",
+  },
+  {
+    quizName: "Fundamentals",
+    quizModule: "Variables",
+    quizScore: 91,
+    studentId: 02,
+    studentName: "Madison",
+    submissionDate: "5/4/2022",
+  },
+  {
+    quizName: "Fundamentals",
+    quizModule: "Functions",
+    quizScore: 67,
+    studentId: 03,
+    studentName: "Michael",
+    submissionDate: "5/4/2022",
+  },
+  {
+    quizName: "Fundamentals",
+    quizModule: "Calculus",
+    quizScore: 83,
+    studentId: 04,
+    studentName: "Jenny",
+    submissionDate: "5/4/2022",
+  },
+  {
+    quizName: "Fundamentals",
+    quizModule: "Variables",
+    quizScore: 91,
+    studentId: 05,
+    studentName: "Jim",
     submissionDate: "5/3/2022",
+  },
+  {
+    quizName: "Fundamentals",
+    quizModule: "Functions",
+    quizScore: 67,
+    studentId: 06,
+    studentName: "Jeff",
+    submissionDate: "5/3/2022",
+  },
+  {
+    quizName: "Fundamentals",
+    quizModule: "Calculus",
+    quizScore: 83,
+    studentId: 07,
+    studentName: "Molly",
+    submissionDate: "5/2/2022",
+  },
+  {
+    quizName: "Fundamentals",
+    quizModule: "Variables",
+    quizScore: 91,
+    studentId: 08,
+    studentName: "Mary",
+    submissionDate: "5/2/2022",
+  },
+  {
+    quizName: "Fundamentals",
+    quizModule: "Functions",
+    quizScore: 67,
+    studentId: 09,
+    studentName: "Melissa",
+    submissionDate: "5/2/2022",
+  },
+  {
+    quizName: "Fundamentals",
+    quizModule: "Calculus",
+    quizScore: 83,
+    studentId: 10,
+    studentName: "Bill",
+    submissionDate: "5/1/2022",
   },
   {
     quizName: "Section 2",
     quizModule: "Variables",
     quizScore: 91,
-    studentId: 02,
-    studentName: "Madison Anderson",
-    submissionDate: "5/2/2022",
+    studentId: 11,
+    studentName: "Jessica",
+    submissionDate: "5/1/2022",
   },
   {
     quizName: "Section 3",
     quizModule: "Functions",
     quizScore: 67,
-    studentId: 03,
-    studentName: "Michael Anderson",
+    studentId: 12,
+    studentName: "Jamie",
     submissionDate: "5/1/2022",
   },
 ];
 
+const arrayOfNames = [
+  "Michael",
+  "Madison",
+  "Mark",
+  "Jenny",
+  "Jim",
+  "Jeff",
+  "Molly",
+  "Mary",
+  "Melissa",
+  "Bill",
+  "Jessica",
+  "Jamie",
+];
 // Function takes a date and an array as parameters and returns an array of
 // objects that have that same date
 const filterByDate = (date, submissions) => {
@@ -37,6 +123,7 @@ const filterByDate = (date, submissions) => {
   return mySubmissions;
 };
 
+const resultOfFilterByDate = filterByDate("5/1/2022", onlineQuiz);
 // Function takes a date and array of objects as a
 // parameter and returns the the objects of the array that
 // don't match the date
@@ -75,16 +162,19 @@ const filterByStudentName = (submissions) => {
 // Function takes a date, a function that checks dates against names and
 // an array of objects and returns a list of names that haven't taken a
 // quiz for the date given
-const findUnsubmitted = (date, namesList, submissions) => {
-  let myNames = [];
-  namesList = getOppositeOfDate(date, submissions);
-  for (let i = 0; i < namesList.length; i++) {
-    if (namesList[i] != submissions[i].studentName) {
-      myNames.push(namesList[i].studentName);
-    }
+const findUnsubmitted = (date, arrayOfNames, submissions) => {
+  let filteredNames = [];
+  filteredSubmissions = filterByDate(date, submissions);
+  //loop thru filtered submission and get names from filteredSubmissions.
+  for (let i = 0; i < filteredSubmissions.length; i++) {
+    filteredNames.push(filteredSubmissions[i].studentName);
   }
-  return myNames;
+
+  let difference = arrayOfNames.filter((x) => filteredNames.indexOf(x) === -1);
+  return difference;
 };
+let difference = findUnsubmitted("5/1/2022", arrayOfNames, onlineQuiz);
+console.log(difference);
 
 // Function that takes an array of objects and loops through it to get
 // the quiz scores of each object then it returns the average of the scores
@@ -96,9 +186,6 @@ const getAverageScore = (submissions) => {
   const result = sum / submissions.length;
   return result.toFixed(1);
 };
-
-let result = findUnsubmitted("5/1/2022", filterByDate, onlineQuiz);
-console.log(result);
 
 // let student = filterByDate("5/4/2022", onlineQuiz);
 // console.log(student);
