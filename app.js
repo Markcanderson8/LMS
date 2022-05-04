@@ -111,6 +111,7 @@ const arrayOfNames = [
   "Jessica",
   "Jamie",
 ];
+
 // Function takes a date and an array as parameters and returns an array of
 // objects that have that same date
 const filterByDate = (date, submissions) => {
@@ -123,19 +124,13 @@ const filterByDate = (date, submissions) => {
   return mySubmissions;
 };
 
-const resultOfFilterByDate = filterByDate("5/1/2022", onlineQuiz);
-// Function takes a date and array of objects as a
-// parameter and returns the the objects of the array that
-// don't match the date
-const getOppositeOfDate = (date, submissions) => {
-  const mySubmissions = [];
-  for (let i = 0; i < submissions.length; i++) {
-    if (!(submissions[i].submissionDate == date)) {
-      mySubmissions.push(submissions[i]);
-    }
-  }
-  return mySubmissions;
-};
+/* test cases for filterByDate
+let filter = filterByDate("5/2/2022", onlineQuiz);
+let filter = filterByDate("5/3/2022", onlineQuiz);
+let filter = filterByDate("5/4/2022", onlineQuiz);
+let filter = filterByDate("5/1/2022", onlineQuiz);
+console.log(filter);
+*/
 
 // Function takes a student Id and array of objects and returns
 // an array with the object of a student that matches the id
@@ -149,16 +144,6 @@ const filterByStudentId = (Id, submissions) => {
   return studentIds;
 };
 
-// Function takes an array of objects and returs the names
-// of the objects
-const filterByStudentName = (submissions) => {
-  let myNamesList = [];
-  for (let i = 0; i < submissions.length; i++) {
-    myNamesList.push(submissions[i].studentName);
-  }
-  return myNamesList;
-};
-
 // Function takes a date, a function that checks dates against names and
 // an array of objects and returns a list of names that haven't taken a
 // quiz for the date given
@@ -169,12 +154,14 @@ const findUnsubmitted = (date, arrayOfNames, submissions) => {
   for (let i = 0; i < filteredSubmissions.length; i++) {
     filteredNames.push(filteredSubmissions[i].studentName);
   }
-
   let difference = arrayOfNames.filter((x) => filteredNames.indexOf(x) === -1);
   return difference;
 };
+
+/* Use this test for findUnsubmitted func
 let difference = findUnsubmitted("5/1/2022", arrayOfNames, onlineQuiz);
 console.log(difference);
+*/
 
 // Function that takes an array of objects and loops through it to get
 // the quiz scores of each object then it returns the average of the scores
@@ -186,9 +173,3 @@ const getAverageScore = (submissions) => {
   const result = sum / submissions.length;
   return result.toFixed(1);
 };
-
-// let student = filterByDate("5/4/2022", onlineQuiz);
-// console.log(student);
-
-// let average = getAverageScore(onlineQuiz);
-// console.log(average);
