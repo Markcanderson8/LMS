@@ -80,7 +80,7 @@ const onlineQuiz = [
     submissionDate: "5/1/2022",
   },
   {
-    quizName: "Section 2",
+    quizName: "Python",
     quizModule: "Variables",
     quizScore: 91,
     studentId: 11,
@@ -88,7 +88,7 @@ const onlineQuiz = [
     submissionDate: "5/1/2022",
   },
   {
-    quizName: "Section 3",
+    quizName: "Python",
     quizModule: "Functions",
     quizScore: 67,
     studentId: 12,
@@ -143,7 +143,8 @@ const filterByStudentId = (Id, submissions) => {
   }
   return studentIds;
 };
-
+let newId = filterByStudentId(11, onlineQuiz);
+console.log(newId);
 // Function takes a date, a function that checks dates against names and
 // an array of objects and returns a list of names that haven't taken a
 // quiz for the date given
